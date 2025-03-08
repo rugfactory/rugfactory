@@ -12,10 +12,15 @@ export default defineConfig({
       buffer: 'buffer',
     },
   },
+  define: {
+    'process.env': {},
+    global: 'globalThis',
+  },
   optimizeDeps: {
     esbuildOptions: {
       define: {
-        global: 'globalThis'
+        global: 'globalThis',
+        Buffer: ['buffer', 'Buffer']
       },
       plugins: [
         NodeGlobalsPolyfillPlugin({
