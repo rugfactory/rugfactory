@@ -8,27 +8,20 @@ Colors
 - #F0F0F0, primary bg color no dark mode
 
 
-Fonts
-- Knewave for big text
-- Schoolbell for small text
+Fonts - Roboto from google fonts
 
-
-Google font info: (can use other classes that is just from google fonts)
 ```css
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+</style>
 
-@import url('https://fonts.googleapis.com/css2?family=Knewave&family=Schoolbell&display=swap');
 
-
-.knewave-regular {
-  font-family: "Knewave", serif;
-  font-weight: 400;
+.roboto-<uniquifier> {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
   font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
-
-.schoolbell-regular {
-  font-family: "Schoolbell", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 ```
