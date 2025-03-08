@@ -64,6 +64,70 @@ Key aspects:
 4. Test on both testnet and mainnet when modifying network-related code
 5. Preserve existing error handling in wallet integration
 
+## Component and Page Development
+
+### Creating New Components
+
+1. Location: `/src/components/`
+- Create new component files using `.jsx` extension
+- Follow existing naming convention (camelCase)
+- Keep components modular and reusable
+- Include necessary imports at the top
+
+2. Component Structure:
+```jsx
+// Example component structure
+import React from 'react';
+import styles from '../styles/component.module.css';
+
+export function ComponentName({ props }) {
+  return (
+    <div className={styles.container}>
+      {/* Component content */}
+    </div>
+  );
+}
+```
+
+### Creating New Pages
+
+1. Location: `/src/pages/`
+- Create new page files using `.jsx` extension
+- Use descriptive names (e.g., `about.jsx`, `dashboard.jsx`)
+- Include page-specific components and logic
+
+2. Page Integration:
+- Add route in `App.jsx`
+- Import necessary components
+- Include page-specific styles
+
+## Core File Modifications
+
+### App.jsx
+
+Modify when:
+- Adding new routes
+- Implementing global layouts
+- Adding authentication guards
+- Integrating new context providers
+
+Example route addition:
+```jsx
+<Routes>
+  <Route path="/new-page" element={<NewPage />} />
+</Routes>
+```
+
+### main.jsx
+
+Modify when:
+- Adding global providers
+- Implementing root-level configurations
+- Setting up global error boundaries
+- Initializing essential services
+
+Keep modifications minimal and well-documented.
+
 ## Version Control
 
 The following files should be kept in version control:
