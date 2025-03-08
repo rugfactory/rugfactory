@@ -9,6 +9,8 @@ build and deploy
 
 ```sh
 pnpm install
+pnpm outdated
+pnpm update --latest
 ```
 
 
