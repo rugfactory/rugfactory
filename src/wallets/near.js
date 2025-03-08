@@ -3,7 +3,6 @@ import '@near-wallet-selector/modal-ui/styles.css';
 
 import { setupBitteWallet } from '@near-wallet-selector/bitte-wallet';
 import { setupWalletSelector } from '@near-wallet-selector/core';
-import { setupEthereumWallets } from '@near-wallet-selector/ethereum-wallets';
 import { setupLedger } from '@near-wallet-selector/ledger';
 import { setupMeteorWallet } from '@near-wallet-selector/meteor-wallet';
 import { setupModal } from '@near-wallet-selector/modal-ui';
@@ -14,13 +13,9 @@ import { setupNearMobileWallet } from '@near-wallet-selector/near-mobile-wallet'
 import { setupWelldoneWallet } from '@near-wallet-selector/welldone-wallet';
 import { Buffer } from 'buffer';
 
-
 // near api js
 import { providers, utils } from 'near-api-js';
 import { createContext } from 'react';
-
-// ethereum wallets
-import { wagmiConfig, web3Modal } from '@/wallets/web3modal';
 
 const THIRTY_TGAS = '30000000000000';
 const NO_DEPOSIT = '0';
@@ -50,7 +45,6 @@ export class Wallet {
       network: this.networkId,
       modules: [
         setupMeteorWallet(),
-        setupEthereumWallets({ wagmiConfig, web3Modal, alwaysOnboardDuringSignIn: true }),
         setupLedger(),
         setupBitteWallet(),
         setupHereWallet(),
