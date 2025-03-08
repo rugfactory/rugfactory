@@ -16,6 +16,15 @@ export default defineConfig({
     'global': 'globalThis',
     'process.env': {},
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          buffer: ['buffer']
+        }
+      }
+    }
+  },
   optimizeDeps: {
     include: ['buffer', '@near-js/providers', 'near-api-js'],
     esbuildOptions: {
