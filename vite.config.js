@@ -17,6 +17,7 @@ export default defineConfig({
     'global': 'globalThis',
     'process.env': {},
     'Buffer': ['buffer', 'Buffer'],
+    'window.Buffer': ['buffer', 'Buffer'],
   },
   optimizeDeps: {
     include: ['buffer', '@near-js/providers', 'near-api-js'],
