@@ -11,7 +11,7 @@ These files are essential for project stability and should be modified with caut
 
 ### 2. eslint.config.js
 - Maintains code quality standards
-- Configured specifically for React 18.3
+- Configured specifically for "detect"
 - Changes could affect development workflow
 
 ### 3. package.json
