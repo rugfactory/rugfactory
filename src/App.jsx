@@ -1,4 +1,4 @@
-import { Navigation } from './components/login_button.jsx';
+import { NEAR_LOGIN } from './components/login_button.jsx';
 import { useEffect, useState } from 'react';
 import { NetworkId } from './config.js';
 import { NearContext, Wallet } from '@/wallets/near';
@@ -17,7 +17,7 @@ function App() {
   return (
     <NearContext.Provider value={{ wallet, signedAccountId }}>
       <BrowserRouter>
-        <Navigation />
+        <NEAR_LOGIN />
         <Routes>
           <Route path="/" element={<div>Welcome to RugFactory</div>} />
         </Routes>
