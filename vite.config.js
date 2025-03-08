@@ -16,9 +16,10 @@ export default defineConfig({
   define: {
     'global': 'globalThis',
     'process.env': {},
+    'Buffer': ['buffer', 'Buffer'],
   },
   optimizeDeps: {
-    include: ['buffer'],
+    include: ['buffer', '@near-js/providers', 'near-api-js'],
     esbuildOptions: {
       define: {
         global: 'globalThis'
