@@ -14,10 +14,8 @@ export default defineConfig({
     },
   },
   define: {
-    'global': {},
+    'global': 'globalThis',
     'process.env': {},
-    'Buffer': [Buffer],
-    'global.Buffer': [Buffer]
   },
   optimizeDeps: {
     include: ['buffer'],
@@ -27,7 +25,8 @@ export default defineConfig({
       },
       plugins: [
         NodeGlobalsPolyfillPlugin({
-          buffer: true
+          buffer: true,
+          process: true
         })
       ]
     }
