@@ -1,17 +1,11 @@
 import { Navigation } from './components/login_button.jsx';
-import Home from './pages/home';
-
-import HelloNear from './pages/hello_near';
 import { useEffect, useState } from 'react';
 import { NetworkId } from './config.js';
 import { NearContext, Wallet } from '@/wallets/near';
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Wallet instance
-const wallet = new Wallet({ NetworkId: NetworkId });
-
-// Optional: Create an access key so the user does not need to sign transactions. Read more about access keys here: https://docs.near.org/concepts/protocol/access-keys
-// const wallet = new Wallet({ networkId: NetworkId, createAccessKeyFor: HelloNearContract });
+const wallet = new Wallet({ networkId: NetworkId });
 
 function App() {
   const [signedAccountId, setSignedAccountId] = useState(null);
@@ -25,12 +19,11 @@ function App() {
       <BrowserRouter>
         <Navigation />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/hello-near" element={<HelloNear />} />
+          <Route path="/" element={<div>Welcome to RugFactory</div>} />
         </Routes>
       </BrowserRouter>
     </NearContext.Provider>
   )
 }
 
-export default App
+export default App;
