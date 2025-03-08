@@ -15,12 +15,14 @@ export default defineConfig({
   define: {
     'global': 'globalThis',
     'process.env': {},
+    'window.ethereum': 'window.ethereum || null'
   },
   build: {
     rollupOptions: {
       output: {
         manualChunks: {
-          buffer: ['buffer']
+          buffer: ['buffer'],
+          'near-api': ['near-api-js', '@near-js/providers']
         }
       }
     }
@@ -29,7 +31,8 @@ export default defineConfig({
     include: ['buffer', '@near-js/providers', 'near-api-js'],
     esbuildOptions: {
       define: {
-        global: 'globalThis'
+        global: 'globalThis',
+        Buffer: ['buffer', 'Buffer']
       },
       plugins: [
         NodeGlobalsPolyfillPlugin({
