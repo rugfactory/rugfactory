@@ -1,4 +1,4 @@
-import { Navigation } from './components/navigation';
+import { Navigation } from './components/login_button.jsx';
 import Home from './pages/home';
 
 import HelloNear from './pages/hello_near';
