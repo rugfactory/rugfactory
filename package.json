@@ -22,8 +22,6 @@
     "@near-wallet-selector/near-mobile-wallet": "^8.10.1",
     "@near-wallet-selector/sender": "^8.10.1",
     "@near-wallet-selector/welldone-wallet": "^8.10.1",
-    "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3",
     "buffer": "^6.0.3",
     "near-api-js": "^5.1.0",
     "react": "^19.0.0",
