@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import eslint from 'vite-plugin-eslint';
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
-import { Buffer } from 'buffer';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -16,8 +15,6 @@ export default defineConfig({
   define: {
     'global': 'globalThis',
     'process.env': {},
-    'Buffer': ['buffer', 'Buffer'],
-    'window.Buffer': ['buffer', 'Buffer'],
   },
   optimizeDeps: {
     include: ['buffer', '@near-js/providers', 'near-api-js'],
