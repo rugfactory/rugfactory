@@ -3,7 +3,7 @@ import { NearContext } from '@/wallets/near';
 
 
 
-export const Navigation = () => {
+export const NEAR_LOGIN = () => {
   const { signedAccountId, wallet } = useContext(NearContext);
   const [action, setAction] = useState(() => {});
   const [label, setLabel] = useState('Loading...');
