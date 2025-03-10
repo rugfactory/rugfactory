@@ -27,7 +27,7 @@ welcome
 tokens
 - create section
 - list section
-- delete section
+- delete button on tokne page
 
 
 

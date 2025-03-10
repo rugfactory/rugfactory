@@ -1,0 +1,42 @@
+.footer {
+  padding: 2rem;
+  background-color: rgba(var(--callout-rgb), 0.05);
+  border-top: 1px solid rgba(var(--card-border-rgb), 0.15);
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.copyright {
+  color: rgba(var(--foreground-rgb), 0.7);
+  margin-bottom: 1rem;
+}
+
+.partnerInfo {
+  color: rgba(var(--foreground-rgb), 0.8);
+}
+
+.partners {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.partners a {
+  color: #B39570;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.partners a:hover {
+  color: #8B6B4D;
+}
+
+.partners span {
+  color: rgba(var(--foreground-rgb), 0.6);
+}

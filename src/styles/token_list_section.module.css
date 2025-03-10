@@ -1,0 +1,66 @@
+.tokenListContainer {
+  padding: 4rem 2rem;
+  background-color: rgba(var(--callout-rgb), 0.05);
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  background: linear-gradient(to right, #B39570, #8B6B4D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tokenGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.tokenCard {
+  background: rgba(var(--card-rgb), 0.1);
+  border: 1px solid rgba(var(--card-border-rgb), 0.15);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.tokenCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(179, 149, 112, 0.3);
+}
+
+.tokenCard h3 {
+  color: #B39570;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.symbol {
+  color: rgba(var(--foreground-rgb), 0.8);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.supply {
+  color: rgba(var(--foreground-rgb), 0.7);
+  font-size: 0.9rem;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(var(--foreground-rgb), 0.8);
+  font-size: 1.2rem;
+}
+
+.error {
+  color: #ff6b6b;
+}

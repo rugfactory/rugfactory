@@ -137,7 +137,7 @@ function UserSection() {
   return (
     <section className={styles.userSectionContainer}>
       <div className={styles.content}>
-        <h2 className={styles.title}>Your Account</h2>
+        <h2 className={styles.title}>YOUR RUGFACTORY ACCOUNT</h2>
         <div className={styles.accountInfo}>
           {isLoading ? (
             <p>Loading balances...</p>
