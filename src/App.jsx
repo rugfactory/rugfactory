@@ -5,6 +5,7 @@ import { NearContext, Wallet } from '@/wallets/near';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { WelcomeSection } from './components/welcome_section';
 import { TokenCreationSection } from './components/token_creation_section';
+import UserSection from './components/user_section';
 
 // Wallet instance
 const wallet = new Wallet({ networkId: NetworkId });
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={
             <>
               <WelcomeSection />
+              <UserSection />
               <TokenCreationSection />
             </>
           } />
