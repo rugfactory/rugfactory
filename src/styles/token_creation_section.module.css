@@ -1,0 +1,78 @@
+.tokenCreationContainer {
+  padding: 4rem 2rem;
+  background-color: rgba(var(--callout-rgb), 0.05);
+}
+
+.content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to right, #B39570, #8B6B4D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  text-align: center;
+  font-size: 1.1rem;
+  color: rgba(var(--foreground-rgb), 0.8);
+  margin-bottom: 3rem;
+}
+
+.form {
+  background: rgba(var(--card-rgb), 0.1);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(var(--card-border-rgb), 0.15);
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: rgba(var(--foreground-rgb), 0.9);
+  font-weight: 500;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid rgba(var(--card-border-rgb), 0.3);
+  border-radius: var(--border-radius);
+  background: rgba(var(--card-rgb), 0.1);
+  color: rgba(var(--foreground-rgb), 0.9);
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: #B39570;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(to bottom right, #B39570, #8B6B4D);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.submitButton:hover {
+  opacity: 0.9;
+}
+
+.submitButton:disabled {
+  background: rgba(var(--card-rgb), 0.3);
+  cursor: not-allowed;
+}
