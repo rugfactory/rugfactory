@@ -85,7 +85,8 @@ function UserSection() {
       const depositAmount = amount || shitDepositAmount;
       if (!depositAmount) return;
       
-      const yoctoAmount = utils.format.parseNearAmount(depositAmount);
+      // Convert to 18 decimals for SHIT token
+      const yoctoAmount = (BigInt(depositAmount) * BigInt(10 ** 18)).toString();
       await wallet.callMethod({
         contractId: ShitTokenContract,
         method: 'ft_transfer_call',
