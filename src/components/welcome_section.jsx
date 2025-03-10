@@ -7,7 +7,7 @@ export function WelcomeSection() {
         <h1 className={styles.title}>WELCOME TO RUGFACTORY</h1>
         <p className={styles.description}>
           Create and manage your own tokens on the NEAR blockchain.<br/>
-          Our platform provides a simple and secure way to deploy your custom tokens.
+          A partnership between sleet.near and huggies.near to provide you with the ultimate token creation platform.
           <br/>
           NOTE: OUR PLATFORM IS IN BETA, ANY FUNDS YOU DEPOSIT INTO THE CONTRACT MAY BE LOST.
         </p>
@@ -25,7 +25,7 @@ export function WelcomeSection() {
           <h3 style={{ width: '100%', textAlign: 'center', marginBottom: '2rem' }}>How to Use</h3>
           <div className={styles.feature}>
             <h3>1. Deposit</h3>
-            <p>Deposit NEAR into our contract to get started</p>
+            <p>Deposit both NEAR and SHIT tokens into our contract to get started</p>
           </div>
           <div className={styles.feature}>
             <h3>2. Create Token</h3>
