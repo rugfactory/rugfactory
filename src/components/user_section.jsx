@@ -22,15 +22,20 @@ function UserSection() {
         args: { account_id: signedAccountId }
       });
       setNearBalance(utils.format.formatNearAmount(balances[0]));
-      setShitBalance(utils.format.formatNearAmount(balances[1]));
+      
+      // Format contract SHIT balance with 18 decimals
+      const contractShitBalance = balances[1];
+      const formattedContractShitBalance = (Number(contractShitBalance) / Math.pow(10, 18)).toFixed(4);
+      setShitBalance(formattedContractShitBalance);
 
-      // Fetch SHIT token balance
-      const shitBalance = await wallet.viewMethod({
+      // Fetch personal SHIT token balance
+      const personalShitBalance = await wallet.viewMethod({
         contractId: ShitTokenContract,
         method: 'ft_balance_of',
         args: { account_id: signedAccountId }
       });
-      setShitBalance(utils.format.formatNearAmount(shitBalance));
+      const formattedPersonalShitBalance = (Number(personalShitBalance) / Math.pow(10, 18)).toFixed(4);
+      setPersonalShitBalance(formattedPersonalShitBalance);
     } catch (error) {
       console.error('Error fetching balances:', error);
     } finally {
@@ -132,7 +137,8 @@ function UserSection() {
             <>
               <p>Account ID: {signedAccountId}</p>
               <p>NEAR Balance: {nearBalance} Ⓝ</p>
-              <p>SHIT Balance: {shitBalance} SHIT</p>
+              <p>Personal SHIT Balance: {personalShitBalance} SHIT</p>
+              <p>Contract SHIT Balance: {shitBalance} SHIT</p>
             </>
           )}
         </div>
