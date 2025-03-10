@@ -9,13 +9,16 @@ export function TokenListSection() {
   useEffect(() => {
     const fetchTokens = async () => {
       try {
-        // TODO: Implement actual contract call to token_list_all
-        // Placeholder data for now
-        const mockTokens = [
-          { name: 'Sample Token 1', symbol: 'ST1', totalSupply: '1000000' },
-          { name: 'Sample Token 2', symbol: 'ST2', totalSupply: '2000000' },
-        ];
-        setTokens(mockTokens);
+        // Fetch tokens from the contract
+        const response = await window.contract.token_list_all();
+        const formattedTokens = Object.entries(response).map(([symbol, data]) => ({
+          name: data.name,
+          symbol: symbol,
+          creatorId: data.creator_id,
+          icon: data.icon,
+          contractAddress: `${symbol}.rugfun.testnet`
+        }));
+        setTokens(formattedTokens);
         setLoading(false);
       } catch (err) {
         setError(`Failed to fetch tokens: ${err.message}`);
@@ -34,11 +37,17 @@ export function TokenListSection() {
       <div className={styles.content}>
         <h2 className={styles.title}>Available Tokens</h2>
         <div className={styles.tokenGrid}>
-          {tokens.map((token, index) => (
-            <div key={index} className={styles.tokenCard}>
+          {tokens.map((token) => (
+            <div key={token.symbol} className={styles.tokenCard}>
+              {token.icon && (
+                <div className={styles.iconContainer}>
+                  <img src={token.icon} alt={`${token.name} icon`} className={styles.tokenIcon} />
+                </div>
+              )}
               <h3>{token.name}</h3>
               <p className={styles.symbol}>{token.symbol}</p>
-              <p className={styles.supply}>Total Supply: {token.totalSupply}</p>
+              <p className={styles.creatorId}>Created by: {token.creatorId}</p>
+              <p className={styles.contractAddress}>Contract: {token.contractAddress}</p>
             </div>
           ))}
         </div>
