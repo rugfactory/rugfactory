@@ -10,6 +10,7 @@ function UserSection() {
   const [shitBalance, setShitBalance] = useState('0');
   const [isLoading, setIsLoading] = useState(false);
   const [depositAmount, setDepositAmount] = useState('');
+  const [shitDepositAmount, setShitDepositAmount] = useState('');
 
   const fetchBalances = useCallback(async () => {
     if (!signedAccountId || !wallet) return;
@@ -22,6 +23,14 @@ function UserSection() {
       });
       setNearBalance(utils.format.formatNearAmount(balances[0]));
       setShitBalance(utils.format.formatNearAmount(balances[1]));
+
+      // Fetch SHIT token balance
+      const shitBalance = await wallet.viewMethod({
+        contractId: ShitTokenContract,
+        method: 'ft_balance_of',
+        args: { account_id: signedAccountId }
+      });
+      setShitBalance(utils.format.formatNearAmount(shitBalance));
     } catch (error) {
       console.error('Error fetching balances:', error);
     } finally {
@@ -64,19 +73,26 @@ function UserSection() {
     }
   };
 
-  const handleDepositShit = async () => {
+  const handleDepositShit = async (amount) => {
     if (!signedAccountId || !wallet) return;
     try {
+      const depositAmount = amount || shitDepositAmount;
+      if (!depositAmount) return;
+      
+      const yoctoAmount = utils.format.parseNearAmount(depositAmount);
       await wallet.callMethod({
         contractId: ShitTokenContract,
         method: 'ft_transfer_call',
         args: {
           receiver_id: RugFactoryContract,
-          amount: '1000000000000000000000000', // 1 SHIT
+          amount: yoctoAmount,
           msg: ''
         },
+        gas: '300000000000000', // 300 TGas
         deposit: '1' // Required for ft_transfer_call
       });
+      setShitDepositAmount('');
+      await fetchBalances();
     } catch (error) {
       console.error('Error depositing SHIT:', error);
     }
@@ -110,55 +126,51 @@ function UserSection() {
       <div className={styles.content}>
         <h2 className={styles.title}>Your Account</h2>
         <div className={styles.accountInfo}>
-          <p className={styles.accountId}>{signedAccountId}</p>
-          <div className={styles.balances}>
-            <div className={styles.balance}>
-              <span>NEAR Balance:</span>
-              <span>{nearBalance} Ⓝ</span>
-            </div>
-            <div className={styles.balance}>
-              <span>SHIT Balance:</span>
-              <span>{shitBalance} 💩</span>
-            </div>
-          </div>
-          <div className={styles.actions}>
-            <button
-              onClick={fetchBalances}
-              className={styles.updateButton}
-              disabled={isLoading}
-            >
-              {isLoading ? 'Updating...' : 'Update Balance'}
+          <p>Account ID: {signedAccountId}</p>
+          <p>NEAR Balance: {nearBalance} Ⓝ</p>
+          <p>SHIT Balance: {shitBalance} SHIT</p>
+        </div>
+
+        <div className={styles.depositSection}>
+          <h3>Deposit NEAR</h3>
+          <input
+            type="number"
+            value={depositAmount}
+            onChange={(e) => setDepositAmount(e.target.value)}
+            placeholder="Amount in NEAR"
+            className={styles.input}
+          />
+          <div className={styles.buttonGroup}>
+            <button onClick={handleDepositNear} className={styles.button}>
+              Deposit NEAR
             </button>
-            <div className={styles.depositGroup}>
-              <input
-                type="number"
-                value={depositAmount}
-                onChange={(e) => setDepositAmount(e.target.value)}
-                placeholder="Amount in NEAR"
-                className={styles.amountInput}
-                min="0"
-                step="0.1"
-              />
-              <button
-                onClick={handleDepositNear}
-                className={styles.depositButton}
-                disabled={!depositAmount}
-              >
-                Deposit NEAR
-              </button>
-              <button
-                onClick={handleWithdrawNear}
-                className={styles.withdrawButton}
-                disabled={!depositAmount}
-              >
-                Withdraw NEAR
-              </button>
-            </div>
-            <button
-              onClick={handleDepositShit}
-              className={styles.depositButton}
-            >
-              Deposit SHIT
+            <button onClick={handleWithdrawNear} className={styles.button}>
+              Withdraw NEAR
+            </button>
+          </div>
+        </div>
+
+        <div className={styles.depositSection}>
+          <h3>Deposit SHIT</h3>
+          <input
+            type="number"
+            value={shitDepositAmount}
+            onChange={(e) => setShitDepositAmount(e.target.value)}
+            placeholder="Amount in SHIT"
+            className={styles.input}
+          />
+          <div className={styles.buttonGroup}>
+            <button onClick={() => handleDepositShit('1000')} className={styles.button}>
+              Deposit 1,000 SHIT
+            </button>
+            <button onClick={() => handleDepositShit('10000')} className={styles.button}>
+              Deposit 10,000 SHIT
+            </button>
+            <button onClick={() => handleDepositShit('100000')} className={styles.button}>
+              Deposit 100,000 SHIT
+            </button>
+            <button onClick={() => handleDepositShit()} className={styles.button}>
+              Deposit Custom Amount
             </button>
           </div>
         </div>
