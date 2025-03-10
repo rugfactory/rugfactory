@@ -126,9 +126,15 @@ function UserSection() {
       <div className={styles.content}>
         <h2 className={styles.title}>Your Account</h2>
         <div className={styles.accountInfo}>
-          <p>Account ID: {signedAccountId}</p>
-          <p>NEAR Balance: {nearBalance} Ⓝ</p>
-          <p>SHIT Balance: {shitBalance} SHIT</p>
+          {isLoading ? (
+            <p>Loading balances...</p>
+          ) : (
+            <>
+              <p>Account ID: {signedAccountId}</p>
+              <p>NEAR Balance: {nearBalance} Ⓝ</p>
+              <p>SHIT Balance: {shitBalance} SHIT</p>
+            </>
+          )}
         </div>
 
         <div className={styles.depositSection}>
