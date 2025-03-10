@@ -17,7 +17,7 @@ export const NEAR_LOGIN = () => {
       setLabel(`Logout ${signedAccountId}`);
     } else {
       setAction(() => wallet.signIn);
-      setLabel('Login');
+      setLabel('LOGIN');
     }
   }, [signedAccountId, wallet]);
 

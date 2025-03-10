@@ -19,10 +19,15 @@ pnpm update --latest
 
 user
 - user_login_button
+- user deposit section
 
 welcome
+- create, rug, delete
 
-token
+tokens
+- create section
+- list section
+- delete section
 
 
 

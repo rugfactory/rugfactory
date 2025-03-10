@@ -4,10 +4,12 @@ export function WelcomeSection() {
   return (
     <section className={styles.welcomeContainer}>
       <div className={styles.content}>
-        <h1 className={styles.title}>Welcome to RugFactory</h1>
+        <h1 className={styles.title}>WELCOME TO RUGFACTORY</h1>
         <p className={styles.description}>
-          Create and manage your own tokens on the NEAR blockchain.
+          Create and manage your own tokens on the NEAR blockchain.<br/>
           Our platform provides a simple and secure way to deploy your custom tokens.
+          <br/>
+          NOTE: OUR PLATFORM IS IN BETA, ANY FUNDS YOU DEPOSIT INTO THE CONTRACT MAY BE LOST.
         </p>
         <div className={styles.features}>
           <div className={styles.feature}>
