@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState, useCallback } from 'react';
 import { NearContext } from '@/wallets/near';
 import { RugFactoryContract, ShitTokenContract } from '@/config';
+import { utils } from 'near-api-js';
 import styles from '../styles/user_section.module.css';
 
 function UserSection() {
@@ -8,6 +9,7 @@ function UserSection() {
   const [nearBalance, setNearBalance] = useState('0');
   const [shitBalance, setShitBalance] = useState('0');
   const [isLoading, setIsLoading] = useState(false);
+  const [depositAmount, setDepositAmount] = useState('');
 
   const fetchBalances = useCallback(async () => {
     if (!signedAccountId || !wallet) return;
@@ -18,8 +20,8 @@ function UserSection() {
         method: 'user_get_balance',
         args: { account_id: signedAccountId }
       });
-      setNearBalance(balances[0]);
-      setShitBalance(balances[1]);
+      setNearBalance(utils.format.formatNearAmount(balances[0]));
+      setShitBalance(utils.format.formatNearAmount(balances[1]));
     } catch (error) {
       console.error('Error fetching balances:', error);
     } finally {
@@ -28,16 +30,37 @@ function UserSection() {
   }, [signedAccountId, wallet]);
 
   const handleDepositNear = async () => {
-    if (!signedAccountId || !wallet) return;
+    if (!signedAccountId || !wallet || !depositAmount) return;
     try {
+      const yoctoAmount = utils.format.parseNearAmount(depositAmount);
       await wallet.callMethod({
         contractId: RugFactoryContract,
         method: 'user_deposit_near',
         args: {},
-        deposit: '1000000000000000000000000' // 1 NEAR
+        deposit: yoctoAmount
       });
+      setDepositAmount('');
+      await fetchBalances();
     } catch (error) {
       console.error('Error depositing NEAR:', error);
+    }
+  };
+
+  const handleWithdrawNear = async () => {
+    if (!signedAccountId || !wallet || !depositAmount) return;
+    try {
+      const yoctoAmount = utils.format.parseNearAmount(depositAmount);
+      await wallet.callMethod({
+        contractId: RugFactoryContract,
+        method: 'user_withdraw_near',
+        args: {
+          amount: yoctoAmount
+        }
+      });
+      setDepositAmount('');
+      await fetchBalances();
+    } catch (error) {
+      console.error('Error withdrawing NEAR:', error);
     }
   };
 
@@ -106,12 +129,31 @@ function UserSection() {
             >
               {isLoading ? 'Updating...' : 'Update Balance'}
             </button>
-            <button
-              onClick={handleDepositNear}
-              className={styles.depositButton}
-            >
-              Deposit NEAR
-            </button>
+            <div className={styles.depositGroup}>
+              <input
+                type="number"
+                value={depositAmount}
+                onChange={(e) => setDepositAmount(e.target.value)}
+                placeholder="Amount in NEAR"
+                className={styles.amountInput}
+                min="0"
+                step="0.1"
+              />
+              <button
+                onClick={handleDepositNear}
+                className={styles.depositButton}
+                disabled={!depositAmount}
+              >
+                Deposit NEAR
+              </button>
+              <button
+                onClick={handleWithdrawNear}
+                className={styles.withdrawButton}
+                disabled={!depositAmount}
+              >
+                Withdraw NEAR
+              </button>
+            </div>
             <button
               onClick={handleDepositShit}
               className={styles.depositButton}
