@@ -60,7 +60,7 @@ function UserSection() {
 
   useEffect(() => {
     fetchBalances();
-  }, [signedAccountId, wallet]);
+  }, [signedAccountId, wallet, fetchBalances]);
 
   if (!signedAccountId) return null;
 
