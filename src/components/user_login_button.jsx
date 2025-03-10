@@ -1,5 +1,6 @@
 import { useContext,useEffect, useState } from 'react';
 import { NearContext } from '@/wallets/near';
+import styles from '../styles/user_login_button.module.css';
 
 
 
@@ -21,14 +22,10 @@ export const NEAR_LOGIN = () => {
   }, [signedAccountId, wallet]);
 
   return (
-    <nav className="navbar navbar-expand-lg">
-      <div className="container-fluid">
-        <div className="ms-auto">
-          <button className="btn btn-primary" onClick={action}>
-            {label}
-          </button>
-        </div>
-      </div>
+    <nav className={styles.loginContainer}>
+      <button className={styles.loginButton} onClick={action}>
+        {label}
+      </button>
     </nav>
   );
 };
