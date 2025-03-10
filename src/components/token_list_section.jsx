@@ -18,7 +18,7 @@ export function TokenListSection() {
         setTokens(mockTokens);
         setLoading(false);
       } catch (err) {
-        setError('Failed to fetch tokens');
+        setError(`Failed to fetch tokens: ${err.message}`);
         setLoading(false);
       }
     };
