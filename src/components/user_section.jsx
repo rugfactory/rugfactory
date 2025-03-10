@@ -8,6 +8,7 @@ function UserSection() {
   const { signedAccountId, wallet } = useContext(NearContext);
   const [nearBalance, setNearBalance] = useState('0');
   const [shitBalance, setShitBalance] = useState('0');
+  const [personalShitBalance, setPersonalShitBalance] = useState('0');
   const [isLoading, setIsLoading] = useState(false);
   const [depositAmount, setDepositAmount] = useState('');
   const [shitDepositAmount, setShitDepositAmount] = useState('');
