@@ -8,6 +8,7 @@ function UserSection() {
   const { signedAccountId, wallet } = useContext(NearContext);
   const [nearBalance, setNearBalance] = useState('0');
   const [shitBalance, setShitBalance] = useState('0');
+  const [personalNearBalance, setPersonalNearBalance] = useState('0');
   const [personalShitBalance, setPersonalShitBalance] = useState('0');
   const [isLoading, setIsLoading] = useState(false);
   const [depositAmount, setDepositAmount] = useState('');
@@ -17,6 +18,7 @@ function UserSection() {
     if (!signedAccountId || !wallet) return;
     setIsLoading(true);
     try {
+      // Get contract balances
       const balances = await wallet.viewMethod({
         contractId: RugFactoryContract,
         method: 'user_get_balance',
@@ -28,6 +30,10 @@ function UserSection() {
       const contractShitBalance = balances[1];
       const formattedContractShitBalance = new Intl.NumberFormat('en-US').format((Number(contractShitBalance) / Math.pow(10, 18)).toFixed(4));
       setShitBalance(formattedContractShitBalance);
+
+      // Get personal NEAR balance
+      const personalNearBalance = await wallet.getBalance(signedAccountId, true);
+      setPersonalNearBalance(personalNearBalance);
 
       // Fetch personal SHIT token balance
       const personalShitBalance = await wallet.viewMethod({
@@ -138,7 +144,8 @@ function UserSection() {
           ) : (
             <>
               <p>Account ID: {signedAccountId}</p>
-              <p>NEAR Balance: {nearBalance} Ⓝ</p>
+              <p>Personal NEAR Balance: {personalNearBalance} Ⓝ</p>
+              <p>Contract NEAR Balance: {nearBalance} Ⓝ</p>
               <p>Personal SHIT Balance: {personalShitBalance} SHIT</p>
               <p>Contract SHIT Balance: {shitBalance} SHIT</p>
             </>
