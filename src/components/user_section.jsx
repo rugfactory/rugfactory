@@ -26,7 +26,7 @@ function UserSection() {
       
       // Format contract SHIT balance with 18 decimals
       const contractShitBalance = balances[1];
-      const formattedContractShitBalance = (Number(contractShitBalance) / Math.pow(10, 18)).toFixed(4);
+      const formattedContractShitBalance = new Intl.NumberFormat('en-US').format((Number(contractShitBalance) / Math.pow(10, 18)).toFixed(4));
       setShitBalance(formattedContractShitBalance);
 
       // Fetch personal SHIT token balance
@@ -35,7 +35,7 @@ function UserSection() {
         method: 'ft_balance_of',
         args: { account_id: signedAccountId }
       });
-      const formattedPersonalShitBalance = (Number(personalShitBalance) / Math.pow(10, 18)).toFixed(4);
+      const formattedPersonalShitBalance = new Intl.NumberFormat('en-US').format((Number(personalShitBalance) / Math.pow(10, 18)).toFixed(4));
       setPersonalShitBalance(formattedPersonalShitBalance);
     } catch (error) {
       console.error('Error fetching balances:', error);
