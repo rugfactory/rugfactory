@@ -1,5 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useCallback } from 'react';
 import { NearContext } from '@/wallets/near';
+import { RugFactoryContract, ShitTokenContract } from '@/config';
 import styles from '../styles/user_section.module.css';
 
 function UserSection() {
@@ -8,12 +9,12 @@ function UserSection() {
   const [shitBalance, setShitBalance] = useState('0');
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchBalances = async () => {
+  const fetchBalances = useCallback(async () => {
     if (!signedAccountId || !wallet) return;
     setIsLoading(true);
     try {
       const balances = await wallet.viewMethod({
-        contractId: 'rugfactory.testnet',
+        contractId: RugFactoryContract,
         method: 'user_get_balance',
         args: { account_id: signedAccountId }
       });
@@ -24,13 +25,13 @@ function UserSection() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [signedAccountId, wallet]);
 
   const handleDepositNear = async () => {
     if (!signedAccountId || !wallet) return;
     try {
       await wallet.callMethod({
-        contractId: 'rugfactory.testnet',
+        contractId: RugFactoryContract,
         method: 'user_deposit_near',
         args: {},
         deposit: '1000000000000000000000000' // 1 NEAR
@@ -44,10 +45,10 @@ function UserSection() {
     if (!signedAccountId || !wallet) return;
     try {
       await wallet.callMethod({
-        contractId: 'shit-237.factory.v10.meme-cooking.testnet',
+        contractId: ShitTokenContract,
         method: 'ft_transfer_call',
         args: {
-          receiver_id: 'rugfactory.testnet',
+          receiver_id: RugFactoryContract,
           amount: '1000000000000000000000000', // 1 SHIT
           msg: ''
         },
@@ -60,9 +61,26 @@ function UserSection() {
 
   useEffect(() => {
     fetchBalances();
-  }, [signedAccountId, wallet, fetchBalances]);
+  }, [fetchBalances]);
 
-  if (!signedAccountId) return null;
+  if (!signedAccountId) {
+    return (
+      <section className={styles.userSectionContainer}>
+        <div className={styles.content}>
+          <h2 className={styles.title}>Your Account</h2>
+          <div className={styles.accountInfo}>
+            <p className={styles.message}>Please log in to view your account details</p>
+            <button
+              onClick={() => wallet?.signIn()}
+              className={styles.loginButton}
+            >
+              Login with NEAR
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className={styles.userSectionContainer}>

@@ -4,4 +4,5 @@ const contractPerNetwork = {
 };
 
 export const NetworkId = 'testnet';
-export const HelloNearContract = contractPerNetwork[NetworkId];
+export const RugFactoryContract = contractPerNetwork[NetworkId];
+export const ShitTokenContract = 'shit-237.factory.v10.meme-cooking.testnet';
