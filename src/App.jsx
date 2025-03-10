@@ -1,4 +1,4 @@
-import { NEAR_LOGIN } from './components/login_button.jsx';
+import { NEAR_LOGIN } from './components/user_login_button.jsx';
 import { useEffect, useState } from 'react';
 import { NetworkId } from './config.js';
 import { NearContext, Wallet } from '@/wallets/near';
