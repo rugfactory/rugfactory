@@ -10,33 +10,27 @@
   text-align: center;
 }
 
-.copyright {
-  color: rgba(var(--foreground-rgb), 0.7);
-  margin-bottom: 1rem;
-}
-
-.partnerInfo {
-  color: rgba(var(--foreground-rgb), 0.8);
-}
-
-.partners {
+.socialLinks {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
 }
 
-.partners a {
+.socialLinks a {
   color: #B39570;
   text-decoration: none;
   transition: color 0.2s ease;
+  font-size: 1rem;
 }
 
-.partners a:hover {
+.socialLinks a:hover {
   color: #8B6B4D;
 }
 
-.partners span {
-  color: rgba(var(--foreground-rgb), 0.6);
+.copyright {
+  color: rgba(var(--foreground-rgb), 0.7);
+  margin-bottom: 1rem;
 }
