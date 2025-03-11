@@ -9,8 +9,8 @@ const shitTokenPerNetwork = {
 };
 
 const refPoolPerNetwork = {
-  mainnet: 'https://dex.rhea.finance/pool/',
-  testnet: 'https://testnet.ref.finance/pool/',
+  mainnet: 'https://dex.rhea.finance/pools/',
+  testnet: 'https://testnet.ref.finance/pools/',
 };
 
 export const NetworkId = 'testnet';
