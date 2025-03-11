@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useCallback } from 'react';
 import { NearContext } from '@/wallets/near';
 import { RugFactoryContract } from '@/config';
 import styles from '../styles/message_section.module.css';
@@ -9,7 +9,7 @@ function MessageSection() {
   const [newMessage, setNewMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchCurrentMessage = async () => {
+  const fetchCurrentMessage = useCallback(async () => {
     if (!wallet) return;
     try {
       const message = await wallet.viewMethod({
@@ -20,7 +20,7 @@ function MessageSection() {
     } catch (error) {
       console.error('Error fetching message:', error);
     }
-  };
+  }, [wallet]);
 
   const handleSetMessage = async () => {
     if (!signedAccountId || !wallet || !newMessage) return;
