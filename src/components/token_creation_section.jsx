@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import styles from '../styles/token_creation_section.module.css';
 import { NearContext } from '@/wallets/near';
 import { RugFactoryContract } from '../config';
+import imageCompression from 'browser-image-compression';
 
 export function TokenCreationSection() {
   const { wallet, signedAccountId } = useContext(NearContext);
@@ -14,51 +15,52 @@ export function TokenCreationSection() {
   const processImage = async (file) => {
     if (!file) return null;
     
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      const img = new Image();
-
-      reader.onload = (e) => {
-        img.src = e.target.result;
-        img.onload = () => {
-          const canvas = document.createElement('canvas');
-          let width = img.width;
-          let height = img.height;
-          
-          // Calculate new dimensions while maintaining aspect ratio
-          const maxSize = 64; // Small size for icon
-          if (width > height) {
-            if (width > maxSize) {
-              height *= maxSize / width;
-              width = maxSize;
+    try {
+      // Compression options
+      // Check if file is SVG
+      if (file.type === 'image/svg+xml') {
+        const reader = new FileReader();
+        return new Promise((resolve) => {
+          reader.onloadend = () => {
+            const base64String = reader.result;
+            if (base64String.length <= 1024) {
+              resolve(base64String);
+            } else {
+              resolve(null);
             }
-          } else {
-            if (height > maxSize) {
-              width *= maxSize / height;
-              height = maxSize;
-            }
-          }
+          };
+          reader.readAsDataURL(file);
+        });
+      }
 
-          canvas.width = width;
-          canvas.height = height;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, width, height);
-
-          // Convert to base64 and check size
-          let quality = 0.9;
-          let base64 = canvas.toDataURL('image/png', quality);
-          
-          // Reduce quality until size is under 1KB
-          while (base64.length > 1024 && quality > 0.1) {
-            quality -= 0.1;
-            base64 = canvas.toDataURL('image/png', quality);
-          }
-
-          resolve(base64.length <= 1024 ? base64 : null);
-        };
+      // For other image types, compress
+      const options = {
+        maxSizeMB: 0.001, // 1KB = 0.001MB
+        maxWidthOrHeight: 32, // Reduced to 32x32 pixels
+        useWebWorker: true
       };
-      reader.readAsDataURL(file);
-    });
+
+      // Compress the image
+      const compressedFile = await imageCompression(file, options);
+      
+      // Convert to base64
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const base64String = reader.result;
+          // Check if the base64 string is under 1KB
+          if (base64String.length <= 1024) {
+            resolve(base64String);
+          } else {
+            resolve(null);
+          }
+        };
+        reader.readAsDataURL(compressedFile);
+      });
+    } catch (error) {
+      console.error('Error compressing image:', error);
+      return null;
+    }
   };
 
   const handleImageChange = async (e) => {
@@ -66,9 +68,12 @@ export function TokenCreationSection() {
     if (file) {
       try {
         const processedIcon = await processImage(file);
-        setTokenIcon(processedIcon);
-        if (!processedIcon) {
-          setError('Could not compress image to under 1KB. Please try a smaller image.');
+        if (processedIcon) {
+          setTokenIcon(processedIcon);
+          setError('');
+        } else {
+          setTokenIcon(null);
+          setError('Image too large. Please use an SVG or a smaller image that can be compressed to under 1KB.');
         }
       } catch (err) {
         console.error('Error processing image:', err);
@@ -150,7 +155,11 @@ export function TokenCreationSection() {
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="tokenIcon">Token Icon (Optional, max 1KB)</label>
+            <label htmlFor="tokenIcon">Token Icon (Optional)</label>
+          <p className={styles.iconGuidelines}>
+            SVG format preferred (max 1KB). For PNG/JPG, image will be resized to 32x32 pixels.
+            Larger images that cannot be compressed under 1KB will be rejected.
+          </p>
             <input
               type="file"
               id="tokenIcon"
