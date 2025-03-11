@@ -1,16 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { NearContext } from '@/wallets/near';
+import { RugFactoryContract } from '@/config';
 import styles from '../styles/token_list_section.module.css';
 
 export function TokenListSection() {
+  const { wallet } = useContext(NearContext);
   const [tokens, setTokens] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchTokens = async () => {
+      if (!wallet) {
+        setError('Wallet not initialized');
+        setLoading(false);
+        return;
+      }
+
       try {
-        // Fetch tokens from the contract
-        const response = await window.contract.token_list_all();
+        // Fetch tokens using wallet's viewMethod
+        const response = await wallet.viewMethod({
+          contractId: RugFactoryContract,
+          method: 'token_list_all',
+          args: {}
+        });
         const formattedTokens = Object.entries(response).map(([symbol, data]) => ({
           name: data.name,
           symbol: symbol,
@@ -27,7 +40,7 @@ export function TokenListSection() {
     };
 
     fetchTokens();
-  }, []);
+  }, [wallet]);
 
   if (loading) return <div className={styles.loading}>Loading tokens...</div>;
   if (error) return <div className={styles.error}>{error}</div>;
