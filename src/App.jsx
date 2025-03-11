@@ -1,4 +1,5 @@
 import { NEAR_LOGIN } from './components/user_login_button.jsx';
+import { NetworkToggleButton } from './components/network_toggle_button.jsx';
 import { useEffect, useState } from 'react';
 import { NetworkId } from './config.js';
 import { NearContext, Wallet } from '@/wallets/near';
@@ -25,6 +26,7 @@ function App() {
     <NearContext.Provider value={{ wallet, signedAccountId }}>
       <BrowserRouter>
         <NEAR_LOGIN />
+        <NetworkToggleButton />
         <Routes>
           <Route path="/" element={
             <>
