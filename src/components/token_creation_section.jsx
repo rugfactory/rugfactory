@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import styles from '../styles/token_creation_section.module.css';
 import { NearContext } from '@/wallets/near';
-import { RugFactoryContract } from '../config';
+import { RugFactoryContract, NearBlocksUrl, RefPoolUrl } from '../config';
 import imageCompression from 'browser-image-compression';
 
 export function TokenCreationSection() {
