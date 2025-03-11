@@ -18,6 +18,11 @@ const nearBlocksPerNetwork = {
   testnet: 'https://testnet.nearblocks.io',
 };
 
+const memeCookingPerNetwork = {
+  mainnet: 'https://meme.cooking/meme/1170',
+  testnet: 'https://testnet.meme.cooking/meme/237',
+};
+
 const networkId = localStorage.getItem('networkId') || 'testnet';
 
 export const NetworkId = networkId;
@@ -26,3 +31,4 @@ export const RugFactoryContract = contractPerNetwork[NetworkId];
 export const ShitTokenContract = shitTokenPerNetwork[NetworkId];
 export const RefPoolUrl = refPoolPerNetwork[NetworkId];
 export const NearBlocksUrl = nearBlocksPerNetwork[NetworkId];
+export const MemeCookingUrl = memeCookingPerNetwork[NetworkId];

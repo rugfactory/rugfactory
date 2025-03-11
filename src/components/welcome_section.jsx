@@ -1,5 +1,5 @@
 import styles from '../styles/welcome_section.module.css';
-import { RugFactoryContract, NearBlocksUrl } from '../config';
+import { RugFactoryContract, NearBlocksUrl, MemeCookingUrl } from '../config';
 
 export function WelcomeSection() {
   return (
@@ -23,6 +23,8 @@ export function WelcomeSection() {
           through <a href={`${NearBlocksUrl}/address/${RugFactoryContract}`} target="_blank" rel="noopener noreferrer">NearBlocks Explorer</a>
           (contract address: {RugFactoryContract}) or contact us 
           on <a href="https://t.me/huggiesdotnear" target="_blank" rel="noopener noreferrer">Telegram</a> for assistance.
+          <br/>
+          Aslo this contract is not locked.
         </p>
         <div className={styles.features}>
           <div className={styles.feature}>
@@ -56,6 +58,14 @@ export function WelcomeSection() {
             <h3>5. Start Fresh</h3>
             <p>Come back to delete your token and create a new one</p>
           </div>
+        </div>
+        <div className={`${styles.contractInfo} ${styles.alertBox}`} style={{ marginTop: '2rem' }}>
+          <h3>Partnership & Token Requirements</h3>
+          <p>
+            This project is in partnership with huggies.near. To use RUGFACTORY, you need SHIT tokens.
+            <br/>
+            You can get your SHIT tokens on <a href={MemeCookingUrl} target="_blank" rel="noopener noreferrer">Meme Cooking</a>.
+          </p>
         </div>
       </div>
     </section>
