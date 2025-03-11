@@ -1,22 +1,22 @@
-import { useContext, useEffect, useState } from 'react';
-import { NearContext } from '@/wallets/near';
+import { useEffect, useState, useContext } from 'react';
 import styles from '../styles/network_toggle_button.module.css';
+import { NearContext } from '@/wallets/near';
 
 export const NetworkToggleButton = () => {
-  const { wallet } = useContext(NearContext);
+  const { signedAccountId } = useContext(NearContext);
   const [currentNetwork, setCurrentNetwork] = useState(() => {
     return localStorage.getItem('networkId') || 'testnet';
   });
 
   useEffect(() => {
-    // Update localStorage when network changes
     localStorage.setItem('networkId', currentNetwork);
   }, [currentNetwork]);
 
   const toggleNetwork = () => {
+    if (signedAccountId) return;
+    
     const newNetwork = currentNetwork === 'testnet' ? 'mainnet' : 'testnet';
     setCurrentNetwork(newNetwork);
-    // Reload the page to apply new network settings
     window.location.reload();
   };
 
@@ -25,6 +25,8 @@ export const NetworkToggleButton = () => {
       <button 
         className={`${styles.networkButton} ${styles[currentNetwork]}`}
         onClick={toggleNetwork}
+        disabled={!!signedAccountId}
+        title={signedAccountId ? 'Log out to change network' : ''}
       >
         {currentNetwork.toUpperCase()}
       </button>

@@ -18,7 +18,10 @@ const nearBlocksPerNetwork = {
   testnet: 'https://testnet.nearblocks.io/',
 };
 
-export const NetworkId = 'testnet';
+const networkId = localStorage.getItem('networkId') || 'testnet';
+
+export const NetworkId = networkId;
+
 export const RugFactoryContract = contractPerNetwork[NetworkId];
 export const ShitTokenContract = shitTokenPerNetwork[NetworkId];
 export const RefPoolUrl = refPoolPerNetwork[NetworkId];
