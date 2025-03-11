@@ -24,12 +24,18 @@ export function TokenListSection() {
           method: 'token_list_all',
           args: {}
         });
+        // Handle empty response or invalid data
+        if (!response || Object.keys(response).length === 0) {
+          setTokens([]);
+          setLoading(false);
+          return;
+        }
         const formattedTokens = Object.entries(response).map(([symbol, data]) => ({
-          name: data.name,
+          name: data.name || symbol,
           symbol: symbol,
-          creatorId: data.creator_id,
-          icon: data.icon,
-          contractAddress: `${symbol}.rugfun.testnet`
+          creatorId: data.creator_id || 'Unknown',
+          icon: data.icon || '',
+          contractAddress: `${symbol}.${RugFactoryContract}`
         }));
         setTokens(formattedTokens);
         setLoading(false);
@@ -48,21 +54,25 @@ export function TokenListSection() {
   return (
     <section className={styles.tokenListContainer}>
       <div className={styles.content}>
-        <h2 className={styles.title}>Available Tokens</h2>
+        <h2 className={styles.title}>RUGFACTORY TOKENS</h2>
         <div className={styles.tokenGrid}>
-          {tokens.map((token) => (
-            <div key={token.symbol} className={styles.tokenCard}>
-              {token.icon && (
-                <div className={styles.iconContainer}>
-                  <img src={token.icon} alt={`${token.name} icon`} className={styles.tokenIcon} />
-                </div>
-              )}
-              <h3>{token.name}</h3>
-              <p className={styles.symbol}>{token.symbol}</p>
-              <p className={styles.creatorId}>Created by: {token.creatorId}</p>
-              <p className={styles.contractAddress}>Contract: {token.contractAddress}</p>
-            </div>
-          ))}
+          {tokens.length === 0 ? (
+            <div className={styles.noTokens}>No tokens available</div>
+          ) : (
+            tokens.map((token) => (
+              <div key={token.symbol} className={styles.tokenCard}>
+                {token.icon && (
+                  <div className={styles.iconContainer}>
+                    <img src={token.icon} alt={`${token.name} icon`} className={styles.tokenIcon} />
+                  </div>
+                )}
+                <h3>{token.name}</h3>
+                <p className={styles.symbol}>{token.symbol}</p>
+                <p className={styles.creatorId}>Created by: {token.creatorId}</p>
+                <p className={styles.contractAddress}>Contract: {token.contractAddress}</p>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </section>
