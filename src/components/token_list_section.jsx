@@ -33,12 +33,12 @@ export function TokenListSection() {
         }
 
         // Format the token data from the contract response
-        const formattedTokens = response.map(token => ({
-          name: token.metadata.name,
-          symbol: token.token_id,
-          creatorId: token.owner_id,
-          icon: token.metadata.icon || '',
-          contractAddress: token.token_account_id
+        const formattedTokens = response.map(([tokenId, tokenData]) => ({
+          name: tokenData.name,
+          symbol: tokenData.symbol,
+          creatorId: tokenData.creator_id,
+          icon: tokenData.icon || '',
+          contractAddress: tokenId
         }));
 
         setTokens(formattedTokens);
