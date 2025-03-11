@@ -7,6 +7,16 @@
   "body": {
     "functions": [
       {
+        "name": "admin_get_balance",
+        "kind": "view",
+        "result": {
+          "serialization_type": "json",
+          "type_schema": {
+            "type": "string"
+          }
+        }
+      },
+      {
         "name": "admin_get_info",
         "kind": "view",
         "result": {
