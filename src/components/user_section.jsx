@@ -146,8 +146,8 @@ function UserSection() {
               <p>Account ID: {signedAccountId}</p>
               <p>Personal NEAR Balance: {personalNearBalance} Ⓝ</p>
               <p>Contract NEAR Balance: {nearBalance} Ⓝ</p>
-              <p>Personal SHIT Balance: {personalShitBalance} SHIT</p>
-              <p>Contract SHIT Balance: {shitBalance} SHIT</p>
+              <p>Personal SHIT Balance: {personalShitBalance} 💩</p>
+              <p>Contract SHIT Balance: {shitBalance} 💩</p>
             </>
           )}
         </div>

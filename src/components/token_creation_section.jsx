@@ -121,6 +121,8 @@ export function TokenCreationSection() {
         <h2 className={styles.title}>Create Your Token</h2>
         <p className={styles.description}>
           Fill in the details below to create your custom token on NEAR blockchain
+          <br/>
+          Make sure you deposit some near and shit first!
         </p>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
