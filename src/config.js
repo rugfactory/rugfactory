@@ -1,6 +1,6 @@
 const contractPerNetwork = {
   mainnet: 'rug-testing.near',
-  testnet: 'rugfun.testnet',
+  testnet: 'rug-testing.testnet',
 };
 
 const shitTokenPerNetwork = {
