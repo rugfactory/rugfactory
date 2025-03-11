@@ -104,14 +104,9 @@ export function TokenCreationSection() {
         gas: '300000000000000' // 300 TGas
       });
 
-      // Get transaction hash from the response
-      const txHash = wallet.lastTransactionId;
-      const explorerUrl = `https://explorer.testnet.near.org/transactions/${txHash}`;
-      const refPoolLink = `${RefPoolUrl}${wallet.lastResultAsStr}`;
-
-      // Set success message with links
+      // Set success message
       setError('');
-      setSuccess(`Token created successfully! View transaction on NEAR Explorer or add liquidity on REF Finance.\nTransaction: ${explorerUrl}\nREF Pool: ${refPoolLink}`);
+      setSuccess('Token created successfully! You can now add liquidity on REF Finance.');
 
       // Reset form
       setTokenName('');
@@ -188,6 +183,7 @@ export function TokenCreationSection() {
           </div>
 
           {error && <p className={styles.error}>{error}</p>}
+          {success && <p className={styles.success}>{success}</p>}
 
           <button
             type="submit"
