@@ -35,11 +35,5 @@ tokens
 ![](public/rug_banner_100px_B39570.svg)
 ----
 
-rugfactory
-🔗 https://rugfactory.near.page/
-🐱 https://github.com/rugfactory
-𝕏 https://x.com/rugfactoryfun
-✈️ https://t.me/huggiesdotnear
-〇 https://rugfactory.near.social
 
 copyright: 2025 by sleet.near, in partnership with huggies.near
