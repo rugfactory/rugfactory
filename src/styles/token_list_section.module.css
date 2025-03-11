@@ -35,6 +35,18 @@
 .tokenCard:hover {
   transform: translateY(-2px);
   border-color: rgba(179, 149, 112, 0.3);
+  cursor: pointer;
+}
+
+.tokenCard.expanded {
+  border-color: #B39570;
+  background: rgba(var(--card-rgb), 0.15);
+}
+
+.tokenDetails {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(179, 149, 112, 0.2);
 }
 
 .iconContainer {

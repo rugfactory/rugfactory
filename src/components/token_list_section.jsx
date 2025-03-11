@@ -8,6 +8,11 @@ export function TokenListSection() {
   const [tokens, setTokens] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedToken, setSelectedToken] = useState(null);
+
+  const handleTokenClick = (token) => {
+    setSelectedToken(selectedToken?.contractAddress === token.contractAddress ? null : token);
+  };
 
   useEffect(() => {
     const fetchTokens = async () => {
@@ -65,15 +70,23 @@ export function TokenListSection() {
             <div className={styles.noTokens}>No tokens available</div>
           ) : (
             tokens.map((token) => (
-              <div key={token.contractAddress} className={styles.tokenCard}>
+              <div 
+                key={token.contractAddress} 
+                className={`${styles.tokenCard} ${selectedToken?.contractAddress === token.contractAddress ? styles.expanded : ''}`}
+                onClick={() => handleTokenClick(token)}
+              >
                 {token.icon && (
                   <div className={styles.iconContainer}>
                     <img src={token.icon} alt={`${token.name} icon`} className={styles.tokenIcon} />
                   </div>
                 )}
                 <h3>{token.name}</h3>
-                <p className={styles.contractAddress}>Contract: {token.symbol}.{RugFactoryContract}</p>
-                <p className={styles.creatorId}>Created by: {token.creatorId}</p>
+                {selectedToken?.contractAddress === token.contractAddress && (
+                  <div className={styles.tokenDetails}>
+                    <p className={styles.contractAddress}>Contract: {token.symbol}.{RugFactoryContract}</p>
+                    <p className={styles.creatorId}>Created by: {token.creatorId}</p>
+                  </div>
+                )}
               </div>
             ))
           )}
