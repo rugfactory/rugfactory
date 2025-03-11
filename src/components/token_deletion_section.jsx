@@ -47,7 +47,9 @@ function TokenDeletionSection() {
       <div className={styles.content}>
         <h2 className={styles.title}>Delete Your Token</h2>
         <p className={styles.description}>
-          You can only delete tokens that you have created. Upon deletion, you will automatically
+          You can only delete tokens that you have created. 
+          <br/>
+          Upon deletion, you will automatically
           receive a refund of 1.5 NEAR.
         </p>
 

@@ -1,4 +1,5 @@
 import styles from '../styles/welcome_section.module.css';
+import { RugFactoryContract } from '../config';
 
 export function WelcomeSection() {
   return (
@@ -12,8 +13,16 @@ export function WelcomeSection() {
           <br/>
           the ultimate token creation platform.
         </p>
-        <p>
-        NOTE: OUR PLATFORM IS IN BETA, ANY FUNDS YOU DEPOSIT INTO THE CONTRACT MAY BE LOST.
+        <p className={`${styles.warning} ${styles.alertBox}`}>
+          NOTE: OUR PLATFORM IS IN BETA, ANY FUNDS YOU DEPOSIT INTO THE CONTRACT MAY BE LOST.
+        </p>
+        <p className={`${styles.contractInfo} ${styles.alertBox}`}>
+          You are interacting with the RugFactory contract.
+          If this UI becomes unavailable,
+          you can still interact with the contract directly
+          through <a href="https://nearblocks.io/address/rugfactory.near" target="_blank" rel="noopener noreferrer">NearBlocks Explorer</a>
+          (contract address: {RugFactoryContract}) or contact us 
+          on <a href="https://t.me/huggiesdotnear" target="_blank" rel="noopener noreferrer">Telegram</a> for assistance.
         </p>
         <div className={styles.features}>
           <div className={styles.feature}>
