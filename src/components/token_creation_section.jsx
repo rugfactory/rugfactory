@@ -196,8 +196,8 @@ export function TokenCreationSection() {
           <div className={styles.detailsBox}>
             <h4>Next Steps After Token Creation:</h4>
             <ul>
-              <li>View your transaction on <a href={NearBlocksUrl} target="_blank" rel="noopener noreferrer">NearBlocks Explorer</a></li>
-              <li>Add liquidity to your token on <a href={RefPoolUrl} target="_blank" rel="noopener noreferrer">REF Finance</a></li>
+              <li>View your transaction on <a href={NearBlocksUrl} target="_blank" rel="noopener noreferrer">NearBlocks Explorer</a> - you can search for your token contract address to view all details</li>
+              <li>Add liquidity to your token on <a href={RefPoolUrl} target="_blank" rel="noopener noreferrer">REF Finance</a> - a pool with 0.10% fee is already created, just search using your token contract address. You can create a new pool if you want a higher fee</li>
               <li>Refresh this page to see your token in the list below</li>
               <li>Having issues? Contact us on <a href="https://t.me/huggiesdotnear" target="_blank" rel="noopener noreferrer">Telegram</a></li>
             </ul>
