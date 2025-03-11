@@ -24,7 +24,8 @@ function TokenDeletionSection() {
         method: 'token_delete',
         args: {
           token_symbol: tokenSymbol
-        }
+        },
+        gas: '300000000000000' // 300 TGas
       });
 
       setSuccess(`Successfully deleted token ${tokenSymbol}. You will receive 1.5 NEAR as refund.`);

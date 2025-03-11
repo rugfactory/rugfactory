@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { WelcomeSection } from './components/welcome_section';
 import { TokenCreationSection } from './components/token_creation_section';
 import { TokenListSection } from './components/token_list_section';
-import { TokenDeletionSection } from './components/token_deletion_section';
+import TokenDeletionSection from './components/token_deletion_section';
 import { FooterSection } from './components/footer_section';
 import UserSection from './components/user_section';
 
