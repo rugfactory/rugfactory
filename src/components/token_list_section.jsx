@@ -72,8 +72,7 @@ export function TokenListSection() {
             tokens.map((token) => (
               <div 
                 key={token.contractAddress} 
-                className={`${styles.tokenCard} ${selectedToken?.contractAddress === token.contractAddress ? styles.expanded : ''}`}
-                onClick={() => handleTokenClick(token)}
+                className={styles.tokenCard}
               >
                 {token.icon && (
                   <div className={styles.iconContainer}>
@@ -81,12 +80,10 @@ export function TokenListSection() {
                   </div>
                 )}
                 <h3>{token.name}</h3>
-                {selectedToken?.contractAddress === token.contractAddress && (
-                  <div className={styles.tokenDetails}>
-                    <p className={styles.contractAddress}>Contract: {token.symbol}.{RugFactoryContract}</p>
-                    <p className={styles.creatorId}>Created by: {token.creatorId}</p>
-                  </div>
-                )}
+                <div className={styles.tokenDetails}>
+                  <p className={styles.contractAddress}>Contract: {token.symbol}.{RugFactoryContract}</p>
+                  <p className={styles.creatorId}>Created by: {token.creatorId}</p>
+                </div>
               </div>
             ))
           )}
