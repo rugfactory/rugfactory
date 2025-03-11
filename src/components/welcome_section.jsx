@@ -1,5 +1,5 @@
 import styles from '../styles/welcome_section.module.css';
-import { RugFactoryContract } from '../config';
+import { RugFactoryContract, NearBlocksUrl } from '../config';
 
 export function WelcomeSection() {
   return (
@@ -20,7 +20,7 @@ export function WelcomeSection() {
           You are interacting with the RugFactory contract.
           If this UI becomes unavailable,
           you can still interact with the contract directly
-          through <a href="https://nearblocks.io/address/rugfactory.near" target="_blank" rel="noopener noreferrer">NearBlocks Explorer</a>
+          through <a href={`${NearBlocksUrl}/address/${RugFactoryContract}`} target="_blank" rel="noopener noreferrer">NearBlocks Explorer</a>
           (contract address: {RugFactoryContract}) or contact us 
           on <a href="https://t.me/huggiesdotnear" target="_blank" rel="noopener noreferrer">Telegram</a> for assistance.
         </p>
