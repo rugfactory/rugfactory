@@ -121,7 +121,7 @@ function UserSection() {
         <div className={styles.content}>
           <h2 className={styles.title}>Your Account</h2>
           <div className={styles.accountInfo}>
-            <p className={styles.message}>Please log in to view your account details</p>
+            <p className={styles.message}>Please log in to view your account details and to create or delete tokens!</p>
             <button
               onClick={() => wallet?.signIn()}
               className={styles.loginButton}
