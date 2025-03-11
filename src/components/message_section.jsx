@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { NearContext } from '@/wallets/near';
-import { RugFactoryContract, ShitTokenContract } from '@/config';
+import { RugFactoryContract } from '@/config';
 import styles from '../styles/message_section.module.css';
 
 function MessageSection() {
@@ -26,21 +26,6 @@ function MessageSection() {
     if (!signedAccountId || !wallet || !newMessage) return;
     setIsLoading(true);
     try {
-      // First approve SHIT token transfer
-      const amount = (BigInt(100) * BigInt(10 ** 18)).toString(); // 100 SHIT with 18 decimals
-      await wallet.callMethod({
-        contractId: ShitTokenContract,
-        method: 'ft_transfer_call',
-        args: {
-          receiver_id: RugFactoryContract,
-          amount: amount,
-          msg: newMessage
-        },
-        gas: '300000000000000', // 300 TGas
-        deposit: '1' // Required for ft_transfer_call
-      });
-
-      // Then set the greeting
       await wallet.callMethod({
         contractId: RugFactoryContract,
         method: 'greeting_set',
@@ -60,7 +45,7 @@ function MessageSection() {
 
   useEffect(() => {
     fetchCurrentMessage();
-  }, [wallet]);
+  }, [wallet, fetchCurrentMessage]);
 
   if (!signedAccountId) {
     return null;
