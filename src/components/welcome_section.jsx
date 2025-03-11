@@ -6,10 +6,14 @@ export function WelcomeSection() {
       <div className={styles.content}>
         <h1 className={styles.title}>WELCOME TO RUGFACTORY</h1>
         <p className={styles.description}>
-          Create and manage your own tokens on the NEAR blockchain.<br/>
-          A partnership between sleet.near and huggies.near to provide you with the ultimate token creation platform.
+          create and rug tokens
           <br/>
-          NOTE: OUR PLATFORM IS IN BETA, ANY FUNDS YOU DEPOSIT INTO THE CONTRACT MAY BE LOST.
+          without writing a single line of code
+          <br/>
+          the ultimate token creation platform.
+        </p>
+        <p>
+        NOTE: OUR PLATFORM IS IN BETA, ANY FUNDS YOU DEPOSIT INTO THE CONTRACT MAY BE LOST.
         </p>
         <div className={styles.features}>
           <div className={styles.feature}>
