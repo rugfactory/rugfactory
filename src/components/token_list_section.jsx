@@ -65,16 +65,15 @@ export function TokenListSection() {
             <div className={styles.noTokens}>No tokens available</div>
           ) : (
             tokens.map((token) => (
-              <div key={token.symbol} className={styles.tokenCard}>
+              <div key={token.contractAddress} className={styles.tokenCard}>
                 {token.icon && (
                   <div className={styles.iconContainer}>
                     <img src={token.icon} alt={`${token.name} icon`} className={styles.tokenIcon} />
                   </div>
                 )}
                 <h3>{token.name}</h3>
-                <p className={styles.symbol}>{token.symbol}</p>
+                <p className={styles.contractAddress}>Contract: {token.symbol}.{RugFactoryContract}</p>
                 <p className={styles.creatorId}>Created by: {token.creatorId}</p>
-                <p className={styles.contractAddress}>Contract: {token.contractAddress}</p>
               </div>
             ))
           )}
