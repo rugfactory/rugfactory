@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import styles from '../styles/token_creation_section.module.css';
 import { NearContext } from '@/wallets/near';
-import { RugFactoryContract } from '../config';
+import { RugFactoryContract, RefPoolUrl } from '../config';
 import imageCompression from 'browser-image-compression';
 
 export function TokenCreationSection() {
@@ -11,6 +11,7 @@ export function TokenCreationSection() {
   const [tokenIcon, setTokenIcon] = useState(null);
   const [isCreating, setIsCreating] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const processImage = async (file) => {
     if (!file) return null;
@@ -102,6 +103,15 @@ export function TokenCreationSection() {
         args,
         gas: '300000000000000' // 300 TGas
       });
+
+      // Get transaction hash from the response
+      const txHash = wallet.lastTransactionId;
+      const explorerUrl = `https://explorer.testnet.near.org/transactions/${txHash}`;
+      const refPoolLink = `${RefPoolUrl}${wallet.lastResultAsStr}`;
+
+      // Set success message with links
+      setError('');
+      setSuccess(`Token created successfully! View transaction on NEAR Explorer or add liquidity on REF Finance.\nTransaction: ${explorerUrl}\nREF Pool: ${refPoolLink}`);
 
       // Reset form
       setTokenName('');
