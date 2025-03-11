@@ -82,3 +82,41 @@
   box-shadow: none;
   color: rgba(255, 255, 255, 0.7);
 }
+
+.detailsBox {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(179, 149, 112, 0.1);
+  border: 1px solid rgba(179, 149, 112, 0.3);
+  border-radius: var(--border-radius);
+}
+
+.detailsBox h4 {
+  color: #B39570;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.detailsBox ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.detailsBox li {
+  margin-bottom: 0.8rem;
+  color: rgba(var(--foreground-rgb), 0.8);
+  font-size: 0.95rem;
+}
+
+.detailsBox a {
+  color: #B39570;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.detailsBox a:hover {
+  color: #8B6B4D;
+  text-decoration: underline;
+}

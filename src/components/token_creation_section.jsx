@@ -192,6 +192,16 @@ export function TokenCreationSection() {
           >
             {isCreating ? 'Creating Token...' : 'Create Token'}
           </button>
+
+          <div className={styles.detailsBox}>
+            <h4>Next Steps After Token Creation:</h4>
+            <ul>
+              <li>View your transaction on <a href="https://nearblocks.io" target="_blank" rel="noopener noreferrer">NearBlocks Explorer</a></li>
+              <li>Add liquidity to your token on <a href="https://app.ref.finance" target="_blank" rel="noopener noreferrer">REF Finance</a></li>
+              <li>Refresh this page to see your token in the list below</li>
+              <li>Having issues? Contact us on <a href="https://t.me/huggiesdotnear" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+            </ul>
+          </div>
         </form>
       </div>
     </section>
