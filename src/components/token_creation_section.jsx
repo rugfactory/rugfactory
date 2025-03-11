@@ -128,6 +128,8 @@ export function TokenCreationSection() {
           Fill in the details below to create your custom token on NEAR blockchain
           <br/>
           Make sure you deposit some near and shit first!
+          <br/>
+          Token creation costs 1.99 Near, you can get 1.5 Near back when you delete the token!
         </p>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
