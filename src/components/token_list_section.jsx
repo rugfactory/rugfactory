@@ -60,28 +60,31 @@ export function TokenListSection() {
     <section className={styles.tokenListContainer}>
       <div className={styles.content}>
         <h2 className={styles.title}>RUGFACTORY TOKENS</h2>
-        <div className={styles.tokenGrid}>
-          {tokens.length === 0 ? (
-            <div className={styles.noTokens}>No tokens available</div>
-          ) : (
-            tokens.map((token) => (
-              <div 
-                key={token.contractAddress} 
-                className={styles.tokenCard}
-              >
-                {token.icon && (
-                  <div className={styles.iconContainer}>
-                    <img src={token.icon} alt={`${token.name} icon`} className={styles.tokenIcon} />
+        <div className={styles.tokenGridContainer}>
+          <p className={styles.scrollHint}>Swipe to see more tokens →</p>
+          <div className={styles.tokenGrid}>
+            {tokens.length === 0 ? (
+              <div className={styles.noTokens}>No tokens available</div>
+            ) : (
+              tokens.map((token) => (
+                <div 
+                  key={token.contractAddress} 
+                  className={styles.tokenCard}
+                >
+                  {token.icon && (
+                    <div className={styles.iconContainer}>
+                      <img src={token.icon} alt={`${token.name} icon`} className={styles.tokenIcon} />
+                    </div>
+                  )}
+                  <h3>{token.name}</h3>
+                  <div className={styles.tokenDetails}>
+                    <p className={styles.contractAddress}>Contract: {token.symbol}.{RugFactoryContract}</p>
+                    <p className={styles.creatorId}>Created by: {token.creatorId}</p>
                   </div>
-                )}
-                <h3>{token.name}</h3>
-                <div className={styles.tokenDetails}>
-                  <p className={styles.contractAddress}>Contract: {token.symbol}.{RugFactoryContract}</p>
-                  <p className={styles.creatorId}>Created by: {token.creatorId}</p>
                 </div>
-              </div>
-            ))
-          )}
+              ))
+            )}
+          </div>
         </div>
       </div>
     </section>

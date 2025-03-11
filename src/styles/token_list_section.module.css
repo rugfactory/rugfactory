@@ -17,11 +17,53 @@
   -webkit-text-fill-color: transparent;
 }
 
+.tokenGridContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
 .tokenGrid {
   display: flex;
-  overflow-x: auto;
-  gap: 2rem;
+  gap: 1rem;
   padding: 1rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
+}
+
+.tokenGrid::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollHint {
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .scrollHint {
+    display: block;
+  }
+  
+  .tokenGridContainer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50px;
+    background: linear-gradient(to right, transparent, #ffffff);
+    pointer-events: none;
+  }
+}
+
+.tokenGrid {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
