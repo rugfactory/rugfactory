@@ -159,6 +159,7 @@ export function TokenCreationSection() {
           <p className={styles.iconGuidelines}>
             SVG format preferred (max 1KB). For PNG/JPG, image will be resized to 32x32 pixels.
             Larger images that cannot be compressed under 1KB will be rejected.
+            Our contract has a default one it will use, if none is provided!
           </p>
             <input
               type="file"
