@@ -17,7 +17,7 @@ export function WelcomeSection() {
           NOTE: OUR PLATFORM IS IN BETA, ANY FUNDS YOU DEPOSIT INTO THE CONTRACT MAY BE LOST.
         </p>
         <p className={`${styles.contractInfo} ${styles.alertBox}`}>
-          You are interacting with the RugFactory contract.
+          You are interacting with a near smart contract.<br/>
           If this UI becomes unavailable,
           you can still interact with the contract directly
           through <a href={`${NearBlocksUrl}/address/${RugFactoryContract}`} target="_blank" rel="noopener noreferrer">NearBlocks Explorer</a>
