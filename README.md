@@ -16,21 +16,43 @@ pnpm update --latest
 
 ### Layout and Components
 
+#### User Interface
+- **User Authentication**
+  - NEAR wallet login/logout button
+  - Network toggle (testnet/mainnet)
+  
+- **User Dashboard**
+  - NEAR balance display
+  - SHIT token balance display
+  - Deposit section for NEAR and SHIT tokens
+  - Transaction history
 
-user
-- user_login_button
-- user deposit section
+#### Welcome Section
+- Platform introduction and features
+- Security warnings and disclaimers
+- Contract interaction information
+- Quick start guide
 
-welcome
-- create, rug, delete
+#### Token Management
+- **Token Creation**
+  - Name, symbol, and icon input
+  - Creation fee details
+  - Success feedback with explorer link
+  
+- **Token List**
+  - Grid view of all created tokens
+  - Token details (creator, supply, etc.)
+  - Quick actions for each token
+  
+- **Token Deletion**
+  - Token symbol input
+  - Refund information
+  - Success confirmation
 
-tokens
-- create section
-- list section
-- delete button on tokne page
-
-
-
+#### Additional Features
+- Message section for announcements
+- Footer with copyright and links
+- Responsive design for all devices
 
 ![](public/rug_banner_100px_B39570.svg)
 ----
