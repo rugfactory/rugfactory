@@ -9,6 +9,7 @@ import { TokenListSection } from './components/token_list_section';
 import TokenDeletionSection from './components/token_deletion_section';
 import { FooterSection } from './components/footer_section';
 import UserSection from './components/user_section';
+import MessageSection from './components/message_section';
 
 // Wallet instance
 const wallet = new Wallet({ networkId: NetworkId });
@@ -29,6 +30,7 @@ function App() {
             <>
               <WelcomeSection />
               <UserSection />
+              <MessageSection />
               <TokenCreationSection />
               <TokenListSection />
               <TokenDeletionSection />
