@@ -119,7 +119,7 @@ function UserSection() {
     return (
       <section className={styles.userSectionContainer}>
         <div className={styles.content}>
-          <h2 className={styles.title}>Login to Your Account</h2>
+          <h2 className={styles.title}>Login with Your Near Account</h2>
           <div className={styles.accountInfo}>
             <p className={styles.message}>Please log in to view your account details and to create or delete tokens!</p>
             <button
