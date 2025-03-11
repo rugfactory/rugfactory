@@ -8,11 +8,6 @@ export function TokenListSection() {
   const [tokens, setTokens] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedToken, setSelectedToken] = useState(null);
-
-  const handleTokenClick = (token) => {
-    setSelectedToken(selectedToken?.contractAddress === token.contractAddress ? null : token);
-  };
 
   useEffect(() => {
     const fetchTokens = async () => {
