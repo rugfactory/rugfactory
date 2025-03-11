@@ -13,7 +13,13 @@ const refPoolPerNetwork = {
   testnet: 'https://testnet.ref.finance/pools/',
 };
 
+const nearBlocksPerNetwork = {
+  mainnet: 'https://nearblocks.io/',
+  testnet: 'https://testnet.nearblocks.io/',
+};
+
 export const NetworkId = 'testnet';
 export const RugFactoryContract = contractPerNetwork[NetworkId];
 export const ShitTokenContract = shitTokenPerNetwork[NetworkId];
 export const RefPoolUrl = refPoolPerNetwork[NetworkId];
+export const NearBlocksUrl = nearBlocksPerNetwork[NetworkId];
