@@ -24,22 +24,27 @@ export function TokenListSection() {
           method: 'token_list_all',
           args: {}
         });
+
         // Handle empty response or invalid data
-        if (!response || Object.keys(response).length === 0) {
+        if (!response || !Array.isArray(response)) {
           setTokens([]);
           setLoading(false);
           return;
         }
-        const formattedTokens = Object.entries(response).map(([symbol, data]) => ({
-          name: data.name || symbol,
-          symbol: symbol,
-          creatorId: data.creator_id || 'Unknown',
-          icon: data.icon || '',
-          contractAddress: `${symbol}.${RugFactoryContract}`
+
+        // Format the token data from the contract response
+        const formattedTokens = response.map(token => ({
+          name: token.metadata.name,
+          symbol: token.token_id,
+          creatorId: token.owner_id,
+          icon: token.metadata.icon || '',
+          contractAddress: token.token_account_id
         }));
+
         setTokens(formattedTokens);
         setLoading(false);
       } catch (err) {
+        console.error('Error fetching tokens:', err);
         setError(`Failed to fetch tokens: ${err.message}`);
         setLoading(false);
       }
